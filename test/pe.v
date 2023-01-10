@@ -60,10 +60,14 @@ module pe(
     dsp_multiplier mult (
         .dataa (datain),
         .datab (weight),
-        .result(result)
+        .result(result),
+        .sumin(0),
+        .clock(clock),
+        .clken(1'b1),
+        aclr(1'b0)
     );
 
-    always @(posedge active) begin
+    always @(posedge clock) begin
 
         activeout_c = active;
         if (active == 1'b1) begin
